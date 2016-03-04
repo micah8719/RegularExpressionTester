@@ -1,0 +1,139 @@
+﻿<Window x:Class="RegularExpressionTester.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		Title="Regular Expression Tester" Height="650" Width="1200">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="75"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="75"/>
+			<ColumnDefinition Width="Auto" MinWidth="400"/>
+		</Grid.ColumnDefinitions>
+		<Label Grid.Row="0" Grid.Column="0" Margin="0, 0, 0, 5">Expression:</Label>
+		<Label Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 5">Test Case:</Label>
+		<Label Grid.Row="2" Grid.Column="0">Result:</Label>
+		<TextBox Grid.Row="0" Grid.Column="1" Margin="0, 0, 5, 5" Text="{Binding Expression, UpdateSourceTrigger=PropertyChanged}"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Margin="0, 0, 0, 5" Grid.ColumnSpan="2" Text="{Binding TestCase, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"/>
+		<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Result}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+		<Button Grid.Row="0" Grid.Column="2" Margin="0, 0, 0, 5" Command="{Binding SubmitExpressionCommand}">Submit</Button>
+		<Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" Margin="5, 0, 0, 0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<TabControl Grid.Row="0">
+				<TabItem Header="Meta Characters">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="75"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0">
+							<TextBlock FontWeight="Bold">^</TextBlock>
+							<TextBlock FontWeight="Bold">$</TextBlock>
+							<TextBlock FontWeight="Bold">.</TextBlock>
+							<TextBlock FontWeight="Bold">|</TextBlock>
+							<TextBlock FontWeight="Bold">{...}</TextBlock>
+							<TextBlock FontWeight="Bold">[...]</TextBlock>
+							<TextBlock FontWeight="Bold">(...)</TextBlock>
+							<TextBlock FontWeight="Bold">*</TextBlock>
+							<TextBlock FontWeight="Bold">+</TextBlock>
+							<TextBlock FontWeight="Bold">?</TextBlock>
+							<TextBlock FontWeight="Bold">\</TextBlock>
+						</StackPanel>
+						<StackPanel Grid.Column="1">
+							<TextBlock>Start of a string</TextBlock>
+							<TextBlock>End of a string</TextBlock>
+							<TextBlock>Any character except a new line character</TextBlock>
+							<TextBlock>Alternation</TextBlock>
+							<TextBlock>Explicit quantifier notation</TextBlock>
+							<TextBlock>Explicit set of characters to match</TextBlock>
+							<TextBlock>Logical grouping of part of an expression</TextBlock>
+							<TextBlock>0 or more of previous expression</TextBlock>
+							<TextBlock>1 or more of previous expression</TextBlock>
+							<TextBlock>0 or 1 of previous expression</TextBlock>
+							<TextBlock>Escapes a character</TextBlock>
+						</StackPanel>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Character Escapes">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="75"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0">
+							<TextBlock FontWeight="Bold">\a</TextBlock>
+							<TextBlock FontWeight="Bold">\b</TextBlock>
+							<TextBlock FontWeight="Bold">\t</TextBlock>
+							<TextBlock FontWeight="Bold">\r</TextBlock>
+							<TextBlock FontWeight="Bold">\v</TextBlock>
+							<TextBlock FontWeight="Bold">\f</TextBlock>
+							<TextBlock FontWeight="Bold">\n</TextBlock>
+							<TextBlock FontWeight="Bold">\e</TextBlock>
+							<TextBlock FontWeight="Bold">\040</TextBlock>
+							<TextBlock FontWeight="Bold">\x20</TextBlock>
+							<TextBlock FontWeight="Bold">\cC</TextBlock>
+							<TextBlock FontWeight="Bold">\u0020</TextBlock>
+						</StackPanel>
+						<StackPanel Grid.Column="1">
+							<TextBlock>Matches an alarm</TextBlock>
+							<TextBlock>Matches a backspace</TextBlock>
+							<TextBlock>Matches a tab</TextBlock>
+							<TextBlock>Matches a carriage return</TextBlock>
+							<TextBlock>Matches a vertical tab</TextBlock>
+							<TextBlock>Matches a form feed</TextBlock>
+							<TextBlock>Matches a new line</TextBlock>
+							<TextBlock>Matches an escape</TextBlock>
+							<TextBlock>Matches an ASCII character as octal (up to three digits)</TextBlock>
+							<TextBlock>Matches an ASCII character using hexadecimal notation</TextBlock>
+							<TextBlock>Matches an ASCII control character (\cC = Ctrl+C)</TextBlock>
+							<TextBlock>Matches a Unicode character using hexadecimal notation</TextBlock>
+						</StackPanel>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Character Classes">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="75"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0">
+							<TextBlock FontWeight="Bold">[aeiou]</TextBlock>
+							<TextBlock FontWeight="Bold">[^aeiou]</TextBlock>
+							<TextBlock FontWeight="Bold">[a-zA-Z0-9]</TextBlock>
+							<TextBlock FontWeight="Bold">\w</TextBlock>
+							<TextBlock FontWeight="Bold">\W</TextBlock>
+							<TextBlock FontWeight="Bold">\s</TextBlock>
+							<TextBlock FontWeight="Bold">\S</TextBlock>
+							<TextBlock FontWeight="Bold">\d</TextBlock>
+							<TextBlock FontWeight="Bold">\D</TextBlock>
+						</StackPanel>
+						<StackPanel Grid.Column="1">
+							<TextBlock>Matches a single character in a set</TextBlock>
+							<TextBlock>Matches a single character not in a set</TextBlock>
+							<TextBlock>Matches a single character in a range</TextBlock>
+							<TextBlock>Matches any word character</TextBlock>
+							<TextBlock>Matches any non-word character</TextBlock>
+							<TextBlock>Matches any whitespace character</TextBlock>
+							<TextBlock>Matches any non-whitespace character</TextBlock>
+							<TextBlock>Matches any digit character</TextBlock>
+							<TextBlock>Matches any non-digit character</TextBlock>
+						</StackPanel>
+					</Grid>
+				</TabItem>
+			</TabControl>
+			<TextBlock Grid.Row="1">
+				Information provided by <TextBlock Foreground="Blue" TextDecorations="Underline" MouseLeftButtonUp="UIElement_OnMouseLeftButtonUp" MouseEnter="UIElement_OnMouseEnter" MouseLeave="UIElement_OnMouseLeave">RegExLib.com</TextBlock>
+			</TextBlock>
+		</Grid>
+	</Grid>
+</Window>
